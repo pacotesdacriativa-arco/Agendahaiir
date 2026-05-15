@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Hair</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:
+  radial-gradient(circle at top left,#fff3cf 0,#f7e8c8 28%,transparent 48%),
+  linear-gradient(180deg,#fff8e8,#f3dfb8);
+  overflow-x:hidden;
+  color:#4a3923;
+}
+
+.hidden{display:none}
+
+.tela-inicial{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+.box-inicial{
+  width:100%;
+  max-width:410px;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(10px);
+  border-radius:34px;
+  padding:38px 25px;
+  text-align:center;
+  box-shadow:0 18px 45px rgba(176,130,39,.25);
+  border:1px solid rgba(255,255,255,.9);
+}
+
+.logo-circle,.logo2{
+  border-radius:50%;
+  background:linear-gradient(135deg,#c99a35,#f1d27a,#fff1bd);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  color:white;
+  box-shadow:0 0 35px rgba(201,154,53,.45);
+  border:4px solid white;
+}
+
+.logo-circle{
+  width:105px;
+  height:105px;
+  font-size:48px;
+}
+
+.logo2{
+  width:90px;
+  height:90px;
+  font-size:42px;
+}
+
+h1{
+  color:#9c6b13;
+  text-align:center;
+  margin-top:20px;
+  margin-bottom:8px;
+  font-size:34px;
+}
+
+.sub,.subtitle{
+  color:#7a5520;
+  font-weight:bold;
+  text-align:center;
+}
+
+.btn{
+  width:100%;
+  padding:17px;
+  margin-top:16px;
+  border:none;
+  border-radius:24px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.btn-gold{
+  background:linear-gradient(135deg,#b98218,#d9ad4f,#f5d987);
+  color:white;
+  box-shadow:0 12px 28px rgba(176,130,39,.35);
+}
+
+.btn-light{
+  background:white;
+  color:#9c6b13;
+  border:2px solid #d9ad4f;
+}
+
+.clique{
+  margin-top:14px;
+  color:#9c6b13;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  padding:24px;
+}
+
+.card{
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(8px);
+  border-radius:28px;
+  padding:23px;
+  margin:18px 0;
+  box-shadow:0 12px 35px rgba(176,130,39,.20);
+  border:1px solid rgba(255,255,255,.9);
+}
+
+h2,h3{
+  color:#9c6b13;
+  text-align:center;
+}
+
+.decor{
+  text-align:center;
+  font-size:22px;
+  margin:10px 0 18px;
+}
+
+label{
+  font-weight:bold;
+  display:block;
+  margin-top:13px;
+  color:#6a4616;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:15px;
+  margin-top:7px;
+  border:1px solid #e5c26f;
+  border-radius:18px;
+  background:#fffaf0;
+  font-size:15px;
+  color:#4a3923;
+}
+
+textarea{
+  resize:none;
+  height:85px;
+}
+
+.aviso{
+  background:linear-gradient(135deg,#fff7df,#f8e6b8);
+  color:#8a5f17;
+  padding:13px;
+  border-radius:18px;
+  font-size:14px;
+  margin-top:16px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.anotacao{
+  background:#fff7df;
+  border-left:5px solid #c99a35;
+  padding:13px;
+  border-radius:16px;
+  margin-top:10px;
+  color:#6a4616;
+}
+
+.btn-delete{
+  background:#b98218;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:12px;
+  margin-top:8px;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#8a5f17;
+  margin-top:18px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="tela-inicial" id="inicio">
+  <div class="box-inicial">
+    <div class="logo-circle">💇‍♀️</div>
+    <h1>Agenda Hair</h1>
+    <p class="sub">Seu horário de beleza com elegância ✨</p>
+
+    <button class="btn btn-gold" onclick="abrirAgenda()">Abrir Agenda ✨</button>
+    <div class="clique">Clique para abrir</div>
+
+    <button class="btn btn-light" onclick="abrirLogin()">Designer</button>
+  </div>
+</div>
+
+<div class="hidden" id="agenda">
+  <div class="container">
+
+    <div class="logo">
+      <div class="logo2">💇‍♀️</div>
+      <h1>Agenda Hair</h1>
+      <p class="subtitle">Agende seu horário de forma rápida e prática</p>
+    </div>
+
+    <div class="card">
+      <h2>Agendar Horário</h2>
+      <div class="decor">✨ 💆‍♀️ ✂️ 💛 ✨</div>
+
+      <label>Serviço desejado</label>
+      <select id="servico">
+        <option>Escova - R$ 50,00</option>
+        <option>Corte feminino - R$ 60,00</option>
+        <option>Hidratação - R$ 80,00</option>
+        <option>Reconstrução capilar - R$ 100,00</option>
+        <option>Botox capilar - R$ 120,00</option>
+        <option>Progressiva - R$ 180,00</option>
+        <option>Luzes / Mechas - A partir de R$ 250,00</option>
+        <option>Coloração - A partir de R$ 120,00</option>
+        <option>Cronograma capilar - R$ 150,00</option>
+      </select>
+
+      <label>Escolha a data</label>
+      <input type="date" id="data">
+
+      <label>Escolha o horário</label>
+      <select id="horario">
+        <option>08:00</option><option>09:00</option><option>10:00</option>
+        <option>11:00</option><option>12:00</option><option>13:00</option>
+        <option>14:00</option><option>15:00</option><option>16:00</option>
+        <option>17:00</option><option>18:00</option><option>19:00</option>
+        <option>20:00</option><option>21:00</option><option>22:00</option>
+      </select>
+
+      <label>Nome</label>
+      <input type="text" id="nome" placeholder="Digite seu nome">
+
+      <label>Telefone</label>
+      <input type="text" id="telefone" placeholder="Digite seu WhatsApp">
+
+      <label>Observação</label>
+      <textarea id="observacao" placeholder="Ex: tamanho do cabelo, procedimento desejado, referência, etc."></textarea>
+
+      <div class="aviso">⚠️ Horário sujeito à confirmação da profissional.</div>
+
+      <button class="btn btn-gold" onclick="enviarWhatsApp()">Confirmar pelo WhatsApp ✨</button>
+      <button class="btn btn-light" onclick="voltarInicio()">Voltar</button>
+    </div>
+
+    <footer>Agenda Hair 💛</footer>
+  </div>
+</div>
+
+<div class="hidden" id="loginDesigner">
+  <div class="container">
+    <div class="card">
+      <h2>Área da Designer</h2>
+
+      <label>Senha</label>
+      <input type="password" id="senhaDesigner" placeholder="Digite a senha">
+
+      <button class="btn btn-gold" onclick="entrarDesigner()">Entrar</button>
+      <button class="btn btn-light" onclick="voltarInicio()">Voltar</button>
+    </div>
+  </div>
+</div>
+
+<div class="hidden" id="painelDesigner">
+  <div class="container">
+
+    <div class="logo">
+      <div class="logo2">📒</div>
+      <h1>Agenda da Designer</h1>
+      <p class="subtitle">Anote seus horários confirmados</p>
+    </div>
+
+    <div class="card">
+      <h2>Novo agendamento</h2>
+
+      <label>Nome da cliente</label>
+      <input type="text" id="nomeAnotacao" placeholder="Ex: Ana">
+
+      <label>Telefone</label>
+      <input type="text" id="telefoneAnotacao" placeholder="WhatsApp da cliente">
+
+      <label>Serviço</label>
+      <input type="text" id="servicoAnotacao" placeholder="Ex: Progressiva">
+
+      <label>Data</label>
+      <input type="date" id="dataAnotacao">
+
+      <label>Horário</label>
+      <input type="time" id="horaAnotacao">
+
+      <label>Observação</label>
+      <textarea id="obsAnotacao" placeholder="Ex: confirmou, pagou sinal, cabelo longo..."></textarea>
+
+      <button class="btn btn-gold" onclick="salvarAnotacao()">Salvar na agenda</button>
+    </div>
+
+    <div class="card">
+      <h2>Agendamentos anotados</h2>
+      <div id="listaAnotacoes"></div>
+
+      <button class="btn btn-light" onclick="voltarInicio()">Sair</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let numeroWhatsappDesigner = "5511951136640";
+
+function esconderTudo(){
+  document.getElementById("inicio").style.display="none";
+  document.getElementById("agenda").style.display="none";
+  document.getElementById("loginDesigner").style.display="none";
+  document.getElementById("painelDesigner").style.display="none";
+}
+
+function voltarInicio(){
+  esconderTudo();
+  document.getElementById("inicio").style.display="flex";
+}
+
+function abrirAgenda(){
+  esconderTudo();
+  document.getElementById("agenda").style.display="block";
+}
+
+function abrirLogin(){
+  esconderTudo();
+  document.getElementById("loginDesigner").style.display="block";
+}
+
+function entrarDesigner(){
+  let senha = document.getElementById("senhaDesigner").value;
+
+  if(senha === "chocolate5566"){
+    esconderTudo();
+    document.getElementById("painelDesigner").style.display="block";
+    mostrarAnotacoes();
+  }else{
+    alert("Senha incorreta.");
+  }
+}
+
+function enviarWhatsApp(){
+  let servico=document.getElementById("servico").value;
+  let data=document.getElementById("data").value;
+  let horario=document.getElementById("horario").value;
+  let nome=document.getElementById("nome").value;
+  let telefone=document.getElementById("telefone").value;
+  let observacao=document.getElementById("observacao").value;
+
+  if(!nome || !telefone || !data){
+    alert("Preencha nome, telefone e data.");
+    return;
+  }
+
+  let mensagem=`Olá! Gostaria de solicitar um agendamento ✨💇‍♀️
+
+Nome: ${nome}
+Telefone: ${telefone}
+Serviço: ${servico}
+Data desejada: ${data}
+Horário desejado: ${horario}
+Observação: ${observacao || "Nenhuma"}
+
+Aguardo confirmação do horário 💛`;
+
+  window.open(`https://wa.me/${numeroWhatsappDesigner}?text=${encodeURIComponent(mensagem)}`,"_blank");
+}
+
+function salvarAnotacao(){
+  let nome = document.getElementById("nomeAnotacao").value;
+  let telefone = document.getElementById("telefoneAnotacao").value;
+  let servico = document.getElementById("servicoAnotacao").value;
+  let data = document.getElementById("dataAnotacao").value;
+  let hora = document.getElementById("horaAnotacao").value;
+  let obs = document.getElementById("obsAnotacao").value;
+
+  if(!nome || !data || !hora){
+    alert("Preencha pelo menos nome, data e horário.");
+    return;
+  }
+
+  let anotacoes = JSON.parse(localStorage.getItem("anotacoesHairDesigner")) || [];
+
+  anotacoes.push({nome, telefone, servico, data, hora, obs});
+
+  localStorage.setItem("anotacoesHairDesigner", JSON.stringify(anotacoes));
+
+  document.getElementById("nomeAnotacao").value="";
+  document.getElementById("telefoneAnotacao").value="";
+  document.getElementById("servicoAnotacao").value="";
+  document.getElementById("dataAnotacao").value="";
+  document.getElementById("horaAnotacao").value="";
+  document.getElementById("obsAnotacao").value="";
+
+  mostrarAnotacoes();
+}
+
+function excluirAnotacao(index){
+  let anotacoes = JSON.parse(localStorage.getItem("anotacoesHairDesigner")) || [];
+  anotacoes.splice(index,1);
+  localStorage.setItem("anotacoesHairDesigner", JSON.stringify(anotacoes));
+  mostrarAnotacoes();
+}
+
+function mostrarAnotacoes(){
+  let lista = document.getElementById("listaAnotacoes");
+  let anotacoes = JSON.parse(localStorage.getItem("anotacoesHairDesigner")) || [];
+
+  if(anotacoes.length === 0){
+    lista.innerHTML = "<p style='text-align:center;color:#7a5520;'>Nenhum agendamento anotado ainda.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  anotacoes.forEach((a,index)=>{
+    lista.innerHTML += `
+      <div class="anotacao">
+        <strong>${a.nome}</strong><br>
+        📱 ${a.telefone || "Sem telefone"}<br>
+        💇‍♀️ ${a.servico || "Serviço não informado"}<br>
+        📅 ${a.data}<br>
+        ⏰ ${a.hora}<br>
+        📝 ${a.obs || "Sem observação"}<br>
+        <button class="btn-delete" onclick="excluirAnotacao(${index})">Excluir</button>
+      </div>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>
